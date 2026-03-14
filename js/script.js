@@ -296,7 +296,7 @@ function addLoot() {
     if (Name === '') {
         error = 'Loot name cannot be empty.';
     } else if (isNaN(Value) || Value < 0) {
-        error = 'Loot value cannot be negative.'
+        error = 'Loot value must be greater than or equal to 0.'
     } else if (isNaN(Quantity) || Quantity < 1) {
         error = 'Loot quantity must be at least 1.';
     }
