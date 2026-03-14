@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Lilian">
+        <title>Dungeon Loot Splitter</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&family=Roboto+Mono">
+    </head>
+    <body>
+        <header>
+            <!-- BEGIN ROW ONE -->
+            <h1>Dungeon Loot Splitter</h1>
+        </header>
+        
+        <main>
+            
+            <!-- BEGIN ROW TWO -->
+            <section class="panel">
+                <h2>Party Setup</h2>
+                <div class="field-pair">
+                    <label for="partySize">Number of Party Members:</label>
+                    <input type="number" id="partySize" name="partySize" min="1" step="1" value="1">
+                </div>
+                <div id="partyError" class="error" aria-live="polite"></div>
+            </section>
+
+            <section class="panel">
+                <h2>Add Loot</h2>
+                <form id="lootForm">
+                    <div class="loot-fields">
+                        <div class="field-pair">
+                            <label for="lootName">Loot Name:</label>
+                            <input type="text" id="lootName" name="lootName" placeholder="Enter loot name">
+                        </div>
+                        <div class="field-pair">
+                            <label for="lootValue">Loot Value:</label>
+                            <input type="number" id="lootValue" name="lootValue" min="0" step="0.01" 
+                                placeholder="Enter loot value">
+                        </div>
+                        <div class="field-pair">
+                            <label for="lootQuantity">Loot Quantity:</label>
+                            <input type="number" id="lootQuantity" name="lootQuantity" min="1" step="1" value="1" 
+                                placeholder="Enter loot quantity">
+                        </div>
+                    </div>
+                    <div class="field-pair">
+                        <label for="lootRarity">Rarity:</label>
+                        <select id="lootRarity" name="lootRarity">
+                            <option value="common">Common</option>
+                            <option value="uncommon">Uncommon</option>
+                            <option value="rare">Rare</option>
+                            <option value="epic">Epic</option>
+                            <option value="legendary">Legendary</option>
+                        </select>
+                    </div>
+                    <div id="lootError" class="error" aria-live="polite"></div>
+                    <div>
+                        <button type="submit" class="add-loot-btn">Add Loot</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- BEGIN ROW THREE -->
+            <section class="panel wrapper" aria-labelledby="lootListHeader">
+                <div class="loot-list">
+                    <h2 id="lootListHeader">Loot List</h2>
+                    <div id="noLootMessage" class="error" aria-live="polite">No loot added.</div>
+                        <div class="loot-table">
+                            <!-- Header Row -->
+                            <div class="loot-header-row">
+                                <div class="loot-header">Name</div>
+                                <div class="loot-header">Value</div>
+                                <div class="loot-header">Quantity</div>
+                                <div class="loot-header">Remove</div>
+                            </div>
+
+                            <!-- Loot Items will be appended here -->
+                            <div id="lootRows"></div>
+                        </div>
+                    <div class="total-loot" id="totalLoot" aria-live="polite"></div>
+                </div>
+            </section>
+            <section class="panel mt-4rem" aria-labelledby="splitLootHeader">
+                <h2 id="splitLootHeader">Split Loot</h2>
+                <button id="splitBtn" class="mb-40">Split Loot</button>
+                <div id="splitError" class="error" aria-live="polite"></div>
+                <div id="result" aria-live="polite"></div>
+                <button id="resetBtn" class="reset-btn">Reset All</button>
+            </section>
+
+            <!-- BEGIN ROW FOUR -->
+            <section class="panel reflection">
+                <h2>Logic Explanation</h2>
+                <p>
+                    When the user changes the application state, the updated loot array and party size are validated and 
+                    immediately saved to localStorage. When the page loads, the app restores that saved object, 
+                    validates it, assigns the values back into memory, and then calls <code>updateUI()</code> so the 
+                    interface reflects the restored state without requiring any user action. <code>updateUI()</code> 
+                    must run after restoration so the interface reflects the actual app state stored in memory. If 
+                    rendering occurred first, the UI would display default values before the restored state is applied. 
+                    If no valid saved data exists, <code>restoreState()</code> safely falls back to default values (an 
+                    empty loot array and a party size of 1), ensuring the application always starts in a valid state.
+                </p>
+                <p>
+                    <code>JSON.stringify()</code> converts the state object into a string so it can be stored in 
+                    localStorage, which only accepts string data. <code>JSON.parse()</code> reverses the process by 
+                    turning the stored string back into a usable JavaScript object. While stepping through 
+                    <code>restoreState()</code> with breakpoints, I observed the saved JSON string being parsed and the 
+                    restored loot array being built before <code>updateUI()</code> ran. This confirmed that state was 
+                    restored correctly before any rendering occurred.
+                </p>
+                <p>
+                    This phase supports the course outcomes by strengthening my understanding of state management, JSON, 
+                    and localStorage, and by reinforcing debugging skills and lifecycle thinking &mdash; initializing, 
+                    mutating, persisting, restoring, and resetting state in a controlled and predictable way.
+                </p>
+            </section>
+            
+        </main>
+        <script src="js/script.js"></script>
+    </body>
+</html>

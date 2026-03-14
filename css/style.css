@@ -1,0 +1,399 @@
+* {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    background: #e6edf5;
+    font-size: 20px;
+    color: #1f2a38;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+header {
+    padding: 30px;
+}
+
+/* Base styles for mobile (single column) */
+main {
+    padding: 15px;
+    gap: 1rem;
+    margin-bottom: 30px;
+}
+
+select {
+    height: 25px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #2a3d8f;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+    width: 110px;
+}
+
+button:hover {
+    background-color: #1e40af;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.5);
+}
+
+button:disabled {
+    background: #9aa7bd;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px;
+    border-radius: 4px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.95em;
+    color: #c7254e;
+    border: 1px solid #e1e1e1;
+}
+
+.panel {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.loot-fields {
+    display: block;
+}
+
+.field-pair {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 0.5rem;
+    height: auto;
+}
+
+form .field-pair label {
+    width: 140px;
+}
+
+.hidden {
+    display: none;
+}
+
+.wrapper {
+    background: none;
+    box-shadow: none;
+    padding: 0 20px 0 0;
+    min-width: 600px;
+}
+
+.wrapper:hover {
+    box-shadow: none;
+}
+
+.loot-list {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #d3d1cc;
+    border: 3px double #8b7d6b;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 12px 3px rgba(139, 125, 107, 0.5);
+    margin-top: 4rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.loot-list:hover {
+    box-shadow: 0 0 20px 5px rgba(13, 125, 107, 0.7);
+    border-color: #a6937e;
+}
+
+.loot-table {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    gap: 0.5rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    min-width: 500px;
+    overflow-x: auto; 
+    overflow-wrap: anywhere;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.9em;
+}
+
+.loot-header-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    font-weight: 600;
+    border-bottom: 2px solid #8b6d6b;
+    padding-bottom: 0.4rem;
+}
+
+.loot-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    padding: 0.4rem;
+}
+
+.fade-in {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.loot-row:hover {
+    filter: brightness(1.05);
+}
+
+.loot-cell {
+    color: #3a2f1f;
+}
+
+/* Name cell with 2 lines: name + rarity */
+.loot-name-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.loot-name {
+    font-weight: 600;
+}
+
+.loot-rarity {
+    font-size: 0.85em;
+    opacity: 0.7;
+    padding-left: 1.5em;
+}
+
+.rarity-common,
+.rarity-uncommon,
+.rarity-rare,
+.rarity-epic,
+.rarity-legendary {
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.rarity-common {
+    color: #6c757d;
+    background: linear-gradient(to right, #fff6d6, transparent);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rarity-common .loot-name::before {
+    content: "⚪";
+}
+
+.rarity-uncommon {
+    color: #2ecc71;
+    background: linear-gradient(to right, #d6fff0, transparent);
+    text-shadow: 1px 1px 3px rgba(0, 128, 0, 0.5);
+}
+
+.rarity-uncommon .loot-name::before {
+    content: "🟢"
+}
+
+.rarity-rare {
+    color: #3498db;
+    background: linear-gradient(to right, #d6eaff, transparent);
+    text-shadow: 1px 1px 4px rgba(30, 144, 255, 0.6);
+}
+
+.rarity-rare .loot-name::before {
+    content: "🔵";
+}
+
+.rarity-epic {
+    color: #9b59b9;
+    background: linear-gradient(to right, #f0d6ff, transparent);
+    text-shadow: 1px 1px 5px rgba(138, 43, 226, 0.7);
+}
+
+.rarity-epic .loot-name::before {
+    content: "🟣";
+}
+
+.rarity-legendary {
+    color: #f39c12;
+    background: linear-gradient(to right, #fff3d6, transparent);
+    text-shadow: 2px 2px 6px rgba(255, 165, 0, 0.8);
+}
+
+.rarity-legendary .loot-name::before {
+    content: "🟡";
+}
+
+.error {
+    color: #b30000;
+    font-weight: bold;
+}
+
+.add-loot-btn {
+    margin-top: 30px;
+}
+
+.loot-value-cell,
+.loot-quantity-cell  {
+    font-size: 0.9em;
+    color: #333;
+    text-align: right;
+}
+
+.loot-value-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.loot-value-base {
+    font-style: italic;
+}
+
+.loot-value-final {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #2a3d8f;
+    opacity: 0.7;
+    padding-left: 0.5rem;
+}
+
+.loot-row button {
+    width: 100%;
+}
+
+.remove-btn {
+    white-space: nowrap;
+    padding: 4px 8px;
+    font-size: 0.85em;
+    background-color: #1f2a38;
+    box-sizing: border-box;
+    color: #fff;
+    min-width: 80px;
+    border: 1px solid;
+}
+
+.remove-btn:hover {
+    background-color: #2a3748;
+}
+
+/* Collapse animation */
+.collapse-up {
+    max-height: 500px;
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.collapse-up.collapsing {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.total-loot {
+    border-top: 2px solid #ccc;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.mt-4rem {
+    margin-top: 4rem;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    background: #9a4f4f;
+    border: none;
+    color: #f4f4f4;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(80, 40, 40, 0.35);
+    width: 110px;
+    margin-top: 40px;
+}
+
+.reset-btn:hover {
+    background-color: #7f3f3f;
+    box-shadow: 0 4px 12px rgba(65, 25, 25, 0.7);
+}
+
+.reflection {
+    background: #e4e7ec;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin: 4rem 0;
+    color: #2f3e4d;
+}
+
+.reflection h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #d0d7e2;
+    padding-bottom: 8px;
+}
+
+.reflection p {
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+#lootRows {
+    display: contents;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    } to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+}
+
+/* Tablet and up (two columns) */
+@media (min-width: 768px) {
+    header {
+        grid-column: span 2;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .wrapper {
+        padding: 0;
+    }
+
+    .loot-list {
+        min-height: 340px;
+    }
+
+    .reflection {
+        grid-column: span 2;
+    }
+}
