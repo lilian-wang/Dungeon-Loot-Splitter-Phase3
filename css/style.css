@@ -95,25 +95,12 @@ form .field-pair label {
     display: none;
 }
 
-.wrapper {
-    background: none;
-    box-shadow: none;
-    padding: 0 20px 0 0;
-    min-width: 600px;
-}
-
-.wrapper:hover {
-    box-shadow: none;
-}
-
 .loot-list {
-    border-radius: 10px;
-    padding: 20px;
     background-color: #d3d1cc;
     border: 3px double #8b7d6b;
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 12px 3px rgba(139, 125, 107, 0.5);
-    margin-top: 4rem;
     transition: box-shadow 0.3s ease;
+    overflow-x: auto;
 }
 
 .loot-list:hover {
@@ -311,10 +298,6 @@ form .field-pair label {
     font-weight: 600;
 }
 
-.mt-4rem {
-    margin-top: 4rem;
-}
-
 .mb-40 {
     margin-bottom: 40px;
 }
@@ -342,7 +325,6 @@ form .field-pair label {
     border: 1px solid #cbd5e1;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin: 4rem 0;
     color: #2f3e4d;
 }
 
